@@ -10,6 +10,19 @@ const container = document.getElementById("container"); // "Traemos" utilizando 
  * Los datos se mostrarán dentro del div de id "container" y por cada ítem se está creando un nuevo párrafo donde se
  * imprime el campo "name" y el campo "lastname" separados por un espacio
  */
+
+function mostrarDatosEnDOM(array) {
+  container.innerHTML = '';
+
+  array.forEach( item => {
+    const parrafo = document.createElement('p');
+    parrafo.textContent = `${item.name} 
+    ${item.lastname}`;
+    container.appendChild(parrafo);
+});
+}
+
+
 function showData(dataArray) {
   // El for itera sobre los elementos del array
   for (const item of dataArray) {
@@ -17,5 +30,15 @@ function showData(dataArray) {
     container.innerHTML += `<p> ${item.name} ${item.lastname} </p>`; // Se concatena cada párrafo de la manera que queremos mostrarlo al innerHTML del contenedor
   }
 }
+
+function fetchDataAndDisplay() {
+  fetch(DATA_URL)
+    .then(response => response.json())
+    .then(data => mostrarDatosEnDOM(data.students)) 
+}
+
+fetchDataAndDisplay();
+
+// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
