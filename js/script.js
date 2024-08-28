@@ -35,6 +35,9 @@ function fetchDataAndDisplay() {
   fetch(DATA_URL)
     .then(response => response.json())
     .then(data => mostrarDatosEnDOM(data.students)) 
+    .catch(error => { console.error("Hubo un problema con la solicitud del fetch", error);
+      
+    })
 }
 
 fetchDataAndDisplay();
